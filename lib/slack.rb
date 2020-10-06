@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require_relative 'workspace'
+require_relative 'user.rb'
 require 'httparty'
 require 'dotenv'
 Dotenv.load
@@ -7,6 +8,9 @@ Dotenv.load
 def main
   puts "Welcome to the Ada Slack CLI!"
   workspace = Workspace.new
+
+  puts "There is #{workspace.users.length}"
+
 
   base_url = "https://slack.com/api/users.list"
   response = HTTParty.get(base_url, query: {

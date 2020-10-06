@@ -1,3 +1,5 @@
+require_relative 'user'
+
 class Workspace
   attr_reader :users, :channels
 
@@ -5,4 +7,6 @@ class Workspace
     @users = []
     @channels = []
   end
+
+
 end
