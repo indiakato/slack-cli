@@ -1,4 +1,6 @@
 require 'simplecov'
+require 'dotenv'
+Dotenv.load
 SimpleCov.start do
   add_filter 'test/'
 end
@@ -8,11 +10,13 @@ require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/skip_dsl'
 require 'vcr'
+require_relative '../lib/user'
+require 'httparty'
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 VCR.configure do |config|
-  config.cassette_library_dir = "test/cassettes" # folder where casettes will be located
+  config.cassette_library_dir = "cassettes" # folder where casettes will be located
   config.hook_into :webmock # tie into this other tool called webmock
   config.default_cassette_options = {
     :record => :new_episodes,    # record new data when we don't have it yet
