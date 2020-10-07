@@ -1,13 +1,13 @@
 require 'awesome_print'
 
 class Channel
-  attr_reader :channel_name, :topic, :member_count, :slack_id
+  attr_reader :slack_id, :channel_name, :topic, :member_count
 
-  def initialize(channel_name, topic, member_count, slack_id)
+  def initialize(slack_id, channel_name, topic, member_count)
+    @slack_id = slack_id
     @channel_name = channel_name
     @topic = topic
     @member_count = member_count
-    @slack_id = slack_id
   end
 
   def self.get_all
@@ -19,7 +19,7 @@ class Channel
     )
 
     return response["channels"].map do |channel|
-      Channel.new(channel["name"], channel["topic"]["value"], channel["num_members"], channel["id"])
+      Channel.new(channel["id"], channel["name"], channel["topic"]["value"], channel["num_members"] )
     end
   end
 end

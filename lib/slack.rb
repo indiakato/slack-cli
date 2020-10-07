@@ -7,7 +7,7 @@ require 'dotenv'
 Dotenv.load
 
 def print_options
-  puts "Your option are: \n1. List users \n2. List channels \n3. Quit \nPlease enter the number of your choice:"
+  puts "Your options are: \n1. List users \n2. List channels \n3. Quit \nPlease enter the number of your choice:"
 end
 
 def main
@@ -22,10 +22,11 @@ def main
     case choice
     when "1", "list users"
       #table print
-      # DOES NOT WORK YET, infinite loop
       workspace.users.each {|user| puts "#{user.real_name} - status: #{user.status_text} - status emoji: #{user.status_emoji} user ID: #{user.slack_id} user-name: #{user.username}"} #to print, user.name, user.real_name
     when "2", "list channels"
-      workspace.channels.each {|channel| puts "#{channel}"}
+      workspace.channels.each do |channel|
+        puts "Channel ID:#{channel.slack_id} - Name: #{channel.channel_name} - Topic: #{channel.topic} - Number of members: #{channel.member_count}"
+      end
     else
       puts "not a valid choice, please try again"
     end
