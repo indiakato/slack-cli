@@ -21,7 +21,7 @@ def main
     when "1"
       #table print
       # DOES NOT WORK YET, infinite loop
-      workspace.users.each {|user| puts "#{user}"}
+      workspace.users.each {|user| puts "#{user}"} #to print, user.name, user.real_name
     when "2"
       workspace.channels.each {|channel| puts "#{channel}"}
     else
