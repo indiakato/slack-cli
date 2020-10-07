@@ -17,7 +17,7 @@ class User
         token: ENV["SLACK_TOKEN"]
     }
     )
-    ap response
+
     return response["members"].map do |user|
       User.new(user["profile"]["real_name"], user["profile"]["status_text"], user["profile"]["status_emoji"])
     end
