@@ -10,7 +10,7 @@ class Workspace
   end
 
   def print_users
-
+    #table print?
   end
 
 end
