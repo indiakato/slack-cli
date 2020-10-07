@@ -12,13 +12,10 @@ class User
 
 
 
-  def self.get_all
+  def self.list_all
     base_url = "https://slack.com/api/users.list"
 
-    response = HTTParty.get(base_url, query: {
-        token: ENV["SLACK_TOKEN"]
-    }
-    )
+    response = self.get(base_url)
 
     return response["members"].map do |user|
       User.new(user["id"], user["name"], user["profile"]["real_name"], user["profile"]["status_text"], user["profile"]["status_emoji"] )

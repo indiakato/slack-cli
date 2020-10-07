@@ -10,13 +10,23 @@ class Channel
     @member_count = member_count
   end
 
-  def self.get_all
+  # def self.get_all
+  #   base_url = "https://slack.com/api/conversations.list"
+  #
+  #   response = HTTParty.get(base_url, query: {
+  #       token: ENV["SLACK_TOKEN"]
+  #   }
+  #   )
+  #
+  #   return response["channels"].map do |channel|
+  #     Channel.new(channel["id"], channel["name"], channel["topic"]["value"], channel["num_members"] )
+  #   end
+  # end
+  #
+  def self.list_all
     base_url = "https://slack.com/api/conversations.list"
 
-    response = HTTParty.get(base_url, query: {
-        token: ENV["SLACK_TOKEN"]
-    }
-    )
+    response = self.get(base_url)
 
     return response["channels"].map do |channel|
       Channel.new(channel["id"], channel["name"], channel["topic"]["value"], channel["num_members"] )
