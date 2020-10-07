@@ -9,16 +9,10 @@ def main
   puts "Welcome to the Ada Slack CLI!"
   workspace = Workspace.new
 
-  puts "There is #{workspace.users.length}"
+  pp workspace.users
+  #puts "There is #{workspace.users.length}"
 
 
-  base_url = "https://slack.com/api/users.list"
-  response = HTTParty.get(base_url, query: {
-      token: ENV["SLACK_TOKEN"]
-  }
-  )
-
-  pp response
   # TODO project
 
 
