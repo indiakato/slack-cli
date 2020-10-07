@@ -29,4 +29,8 @@ class User
 
   end
 
+  def test
+
+  end
+
 end

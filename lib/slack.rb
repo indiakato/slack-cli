@@ -2,6 +2,7 @@
 require_relative 'workspace'
 require_relative 'user'
 require_relative 'channel'
+require 'table_print'
 require 'httparty'
 require 'dotenv'
 Dotenv.load
@@ -21,8 +22,7 @@ def main
   until choice == "3" || choice == "quit"
     case choice
     when "1", "list users"
-      #table print
-      workspace.users.each {|user| puts "#{user.real_name} - status: #{user.status_text} - status emoji: #{user.status_emoji} user ID: #{user.slack_id} user-name: #{user.username}"} #to print, user.name, user.real_name
+      workspace.users.each { |user| puts "#{user.real_name} - status: #{user.status_text} - status emoji: #{user.status_emoji} user ID: #{user.slack_id} user-name: #{user.username}"}
     when "2", "list channels"
       workspace.channels.each do |channel|
         puts "Channel ID:#{channel.slack_id} - Name: #{channel.channel_name} - Topic: #{channel.topic} - Number of members: #{channel.member_count}"
