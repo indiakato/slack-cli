@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require_relative 'workspace'
 require_relative 'user.rb'
+require_relative 'channel.rb'
 require 'httparty'
 require 'dotenv'
 Dotenv.load

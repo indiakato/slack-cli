@@ -12,6 +12,7 @@ require 'minitest/skip_dsl'
 require 'vcr'
 require 'httparty'
 require_relative '../lib/user'
+require_relative '../lib/channel'
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
