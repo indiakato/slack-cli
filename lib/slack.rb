@@ -22,10 +22,10 @@ def main
   until choice == "3" || choice == "quit"
     case choice
     when "1", "list users"
-      workspace.users.each { |user| puts "#{user.real_name} - status: #{user.status_text} - status emoji: #{user.status_emoji} user ID: #{user.slack_id} user-name: #{user.username}"}
+      workspace.users.each { |user| puts "#{user.real_name} - status: #{user.status_text} - status emoji: #{user.status_emoji} user ID: #{user.slack_id} user-name: #{user.name}"}
     when "2", "list channels"
       workspace.channels.each do |channel|
-        puts "Channel ID:#{channel.slack_id} - Name: #{channel.channel_name} - Topic: #{channel.topic} - Number of members: #{channel.member_count}"
+        puts "Channel ID:#{channel.slack_id} - Name: #{channel.name} - Topic: #{channel.topic} - Number of members: #{channel.member_count}"
       end
     else
       puts "not a valid choice, please try again"

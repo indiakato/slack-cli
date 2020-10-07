@@ -1,10 +1,10 @@
 require_relative 'test_helper'
 
 describe "User class" do
-  it "user get_all" do
+  it "user list_all method" do
 
     VCR.use_cassette("user_instances") do
-      all_users = User.get_all
+      all_users = User.list_all
 
       expect(all_users).must_be_instance_of Array
 

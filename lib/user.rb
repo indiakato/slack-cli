@@ -1,10 +1,11 @@
 require 'awesome_print'
-class User
-  attr_reader :slack_id, :username, :real_name, :status_emoji, :status_text
+require_relative 'recipient'
 
-  def initialize(slack_id, username, real_name, status_text, status_emoji)
-    @slack_id = slack_id
-    @username = username
+class User < Recipient
+  attr_reader :real_name, :status_emoji, :status_text
+
+  def initialize(slack_id, name, real_name, status_text, status_emoji)
+    super(slack_id, name)
     @real_name = real_name
     @status_text = status_text
     @status_emoji = status_emoji

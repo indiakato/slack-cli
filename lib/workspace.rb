@@ -5,8 +5,8 @@ class Workspace
   attr_reader :users, :channels
 
   def initialize
-    @users = User.get_all
-    @channels = Channel.get_all
+    @users = User.list_all
+    @channels = Channel.list_all
   end
 
   def print_users

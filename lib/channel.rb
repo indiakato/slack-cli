@@ -1,11 +1,11 @@
 require 'awesome_print'
+require_relative 'recipient'
 
-class Channel
-  attr_reader :slack_id, :channel_name, :topic, :member_count
+class Channel < Recipient
+  attr_reader :topic, :member_count
 
-  def initialize(slack_id, channel_name, topic, member_count)
-    @slack_id = slack_id
-    @channel_name = channel_name
+  def initialize(slack_id, name, topic, member_count)
+    super(slack_id, name)
     @topic = topic
     @member_count = member_count
   end
