@@ -1,13 +1,13 @@
 require 'awesome_print'
 class User
-  attr_reader :real_name, :status_emoji, :status_text
+  attr_reader :slack_id, :username, :real_name, :status_emoji, :status_text
 
-  def initialize(real_name, status_text, status_emoji, username, slack_id)
+  def initialize(slack_id, username, real_name, status_text, status_emoji)
+    @slack_id = slack_id
+    @username = username
     @real_name = real_name
     @status_text = status_text
     @status_emoji = status_emoji
-    @username = username
-    @slack_id = slack_id
   end
 
 
@@ -21,7 +21,7 @@ class User
     )
 
     return response["members"].map do |user|
-      User.new(user["profile"]["real_name"], user["profile"]["status_text"], user["profile"]["status_emoji"], user["name"], user["id"])
+      User.new(user["id"], user["name"], user["profile"]["real_name"], user["profile"]["status_text"], user["profile"]["status_emoji"] )
     end
   end
 
