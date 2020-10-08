@@ -68,4 +68,13 @@ describe "Workspace class" do
 
     expect(@workspace.show_details).must_equal "This user's id is: USLACKBOT, the username is: slackbot and their real name is: Slackbot. They have a status emoji of: N/A and their status text is: N/A"
   end
+
+  it "can post message to channel and return true" do
+    VCR.use_cassette("send_message_data") do
+      @workspace = Workspace.new
+      @workspace.select_channel("test-channel2")
+
+      expect(@workspace.send_message("Success!")).must_equal true
+    end
+  end
 end

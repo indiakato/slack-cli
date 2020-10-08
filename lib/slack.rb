@@ -8,7 +8,7 @@ require 'dotenv'
 Dotenv.load
 
 def print_options
-  puts "Your options are: \n1. List users \n2. List channels \n3. Select User \n4. Select Channel \n5. Details \n6. Quit \n\nPlease enter the number of your choice: "
+  puts "Your options are: \n1. List users \n2. List channels \n3. Select User \n4. Select Channel \n5. Details \n6. Send message \n7. Quit \n\nPlease enter the number of your choice: "
 end
 
 def main
@@ -20,7 +20,7 @@ def main
   print_options
   choice = gets.chomp.downcase
 
-  until choice == "6" || choice == "quit"
+  until choice == "7" || choice == "quit"
     case choice
     when "1", "list users"
       workspace.users.each { |user| puts "#{user.real_name} - status: #{user.status_text} - status emoji: #{user.status_emoji} user ID: #{user.slack_id} user-name: #{user.name}"}
@@ -49,6 +49,14 @@ def main
         puts "No user or channel selected"
       else
         puts workspace.show_details
+      end
+    when "6", "send message"
+      if recipient.nil? || recipient.instance_of?(User)
+        puts "Invalid channel, you must have a channel selected"
+      else
+        puts "Please enter message to post:"
+        message = gets.chomp
+        workspace.send_message(message)
       end
     else
       puts "not a valid choice, please try again"
