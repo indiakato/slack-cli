@@ -6,6 +6,18 @@ class Recipient
     @name = name
   end
 
+  def send_message(message)
+    url = "https://slack.com/api/chat.postMessage"
+
+    response = HTTParty.post(url, body: {
+        token: ENV["SLACK_TOKEN"],
+        text: message,
+        channel: @name
+    }
+    )
+    return response.code == 200 && response.parsed_response["ok"]
+  end
+
   def self.get(url)
 
     response = HTTParty.get(url, query: {
