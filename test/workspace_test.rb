@@ -40,4 +40,27 @@ describe "Workspace class" do
 
     expect(user).must_be_nil
   end
+
+  it "can find a channel by ID" do
+    channel = @workspace.select_channel("C01ABK51G14")
+
+    expect(channel).must_be_instance_of Channel
+    expect(channel.name).must_equal "test-channel2"
+    expect(channel.slack_id).must_equal "C01ABK51G14"
+  end
+
+  it "can find a channel by name" do
+    channel = @workspace.select_channel("test-channel2")
+
+    expect(channel).must_be_instance_of Channel
+    expect(channel.slack_id).must_equal "C01ABK51G14"
+    expect(channel.name).must_equal "test-channel2"
+  end
+
+  it "will return nil for invalid input" do
+    channel = @workspace.select_channel("X")
+
+    expect(channel).must_be_nil
+  end
+
 end
