@@ -3,38 +3,36 @@ require_relative 'channel'
 
 class Workspace
   attr_reader :users, :channels
+  attr_accessor :selected
 
   def initialize
     @users = User.list_all
     @channels = Channel.list_all
-  end
-
-  def print_users
-    #table print?
+    @selected = nil
   end
 
   def select_user(input)
-    found_user = @users.find { |user| user.name == input }
-    if found_user
-      return found_user
+    @selected = @users.find { |user| user.name == input }
+    if @selected
+      return @selected
     else
-      found_user = @users.find { |user| user.slack_id == input }
+      @selected = @users.find { |user| user.slack_id == input }
     end
-    return found_user
+    return @selected
   end
 
   def select_channel(input)
-    found_channel = @channels.find { |channel| channel.name == input }
-    if found_channel
-      return found_channel
+    @selected = @channels.find { |channel| channel.name == input }
+    if @selected
+      return @selected
     else
-      found_channel = @channels.find { |channel| channel.slack_id == input }
+      @selected = @channels.find { |channel| channel.slack_id == input }
     end
-    return found_channel
+    return @selected
   end
 
-  def show_details(recipient)
-    recipient.details
+  def show_details
+    @selected.details
   end
 
 end

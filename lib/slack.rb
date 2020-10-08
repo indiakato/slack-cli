@@ -48,7 +48,7 @@ def main
       if recipient.nil?
         puts "No user or channel selected"
       else
-        puts recipient.details
+        puts workspace.show_details
       end
     else
       puts "not a valid choice, please try again"

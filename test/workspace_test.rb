@@ -63,4 +63,9 @@ describe "Workspace class" do
     expect(channel).must_be_nil
   end
 
+  it "will give details for a selected object" do
+    @workspace.select_user("slackbot")
+
+    expect(@workspace.show_details).must_equal "This user's id is: USLACKBOT, the username is: slackbot and their real name is: Slackbot. They have a status emoji of: N/A and their status text is: N/A"
+  end
 end
