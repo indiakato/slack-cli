@@ -9,6 +9,7 @@ class User < Recipient
     @real_name = real_name
     @status_text = status_text
     @status_emoji = status_emoji
+    empty_status
   end
 
 
@@ -24,7 +25,17 @@ class User < Recipient
   end
 
   def details
+    return "This user's id is: #{@slack_id}, the username is: #{@name} and their real name is: #{@real_name}. They have a status emoji of: #{@status_emoji} and their status text is: #{@status_text}"
+  end
 
+  def empty_status
+    if @status_emoji == ""
+      @status_emoji = "N/A"
+    end
+
+    if @status_text == ""
+      @status_text = "N/A"
+    end
   end
 
   def test

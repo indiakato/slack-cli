@@ -33,4 +33,8 @@ class Workspace
     return found_channel
   end
 
+  def show_details(recipient)
+    recipient.details
+  end
+
 end

@@ -18,4 +18,9 @@ class Recipient
   def self.list_all
     raise NotImplementedError
   end
+
+  def self.details
+    raise NotImplementedError
+  end
+
 end

@@ -5,4 +5,3 @@
 # Ignore environemnt variables
 .env
 .idea/
-cassettes/
