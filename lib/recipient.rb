@@ -8,8 +8,6 @@ class Recipient
     @name = name
   end
 
-
-
   def send_message(message)
     url = "https://slack.com/api/chat.postMessage"
 
@@ -20,7 +18,7 @@ class Recipient
     }
     )
     unless response.code == 200 && response.parsed_response["ok"]
-      raise SlackApiError, "Error when posting #{message}, error: #{response.parsed_response["error"]}"
+      raise SlackApiError, "Error when posting #{message} to #{@name}, error: #{response.parsed_response["error"]}"
     end
     return response.code == 200 && response.parsed_response["ok"]
   end
