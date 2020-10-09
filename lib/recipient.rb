@@ -1,4 +1,4 @@
-class SlackApiError < Exception; end
+class SlackApiError < StandardError; end
 
 class Recipient
   attr_reader :slack_id, :name

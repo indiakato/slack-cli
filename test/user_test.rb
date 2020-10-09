@@ -13,4 +13,14 @@ describe "User class" do
       end
     end
   end
+
+  it "raises SlackApiError when invalid url is passed in" do
+
+    VCR.use_cassette("slackapi_error_check") do
+      expect{
+        User.get("https://slack.com/ap")
+      }.must_raise SlackApiError
+    end
+
+  end
 end
