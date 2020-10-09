@@ -1,3 +1,5 @@
+class SlackApiError < Exception; end
+
 class Recipient
   attr_reader :slack_id, :name
 
@@ -5,6 +7,8 @@ class Recipient
     @slack_id = slack_id
     @name = name
   end
+
+
 
   def send_message(message)
     url = "https://slack.com/api/chat.postMessage"
@@ -15,15 +19,20 @@ class Recipient
         channel: @name
     }
     )
+    unless response.code == 200 && response.parsed_response["ok"]
+      raise SlackApiError, "Error when posting #{message}, error: #{response.parsed_response["error"]}"
+    end
     return response.code == 200 && response.parsed_response["ok"]
   end
 
   def self.get(url)
-
     response = HTTParty.get(url, query: {
         token: ENV["SLACK_TOKEN"]
     }
     )
+    unless response.code == 200 && response.parsed_response["ok"]
+      raise SlackApiError, "Error connecting to Slack API: #{response.code} - #{response.parsed_response["error"]} - url: #{url}, please try again later."
+    end
     return response
   end
 

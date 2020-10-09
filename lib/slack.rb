@@ -45,10 +45,13 @@ def main
   until choice == "7" || choice == "quit"
     case choice
     when "1", "list users"
-      workspace.users.each { |user| puts "#{user.real_name} - status: #{user.status_text} - status emoji: #{user.status_emoji} user ID: #{user.slack_id} user-name: #{user.name}"}
-      #tp workspace.users.each { |user| {:name => user.real_name, :id => user.slack_id, :status_text => user.status_text, :status_emoji => user.status_emoji }}
+      tp workspace.users, :name, :slack_id, :real_name
+
+      # workspace.users.each { |user| puts "#{user.real_name} - status: #{user.status_text} - status emoji: #{user.status_emoji} user ID: #{user.slack_id} user-name: #{user.name}"}
     when "2", "list channels"
-      workspace.channels.each { |channel| puts "Channel ID:#{channel.slack_id} - Name: #{channel.name} - Topic: #{channel.topic} - Number of members: #{channel.member_count}" }
+      tp workspace.channels, :name, :slack_id, :topic, :member_count
+
+      #workspace.channels.each { |channel| puts "Channel ID:#{channel.slack_id} - Name: #{channel.name} - Topic: #{channel.topic} - Number of members: #{channel.member_count}" }
     when "3", "select user"
       recipient = select_user(workspace)
     when "4", "select channel"
@@ -74,10 +77,6 @@ def main
     print_options
     choice = gets.chomp.downcase
   end
-
-
-  # TODO project
-
 
   puts "Thank you for using the Ada Slack CLI"
 end
