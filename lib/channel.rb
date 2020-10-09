@@ -8,6 +8,7 @@ class Channel < Recipient
     super(slack_id, name)
     @topic = topic
     @member_count = member_count
+    empty_topic
   end
 
   def self.list_all
@@ -22,5 +23,12 @@ class Channel < Recipient
 
   def details
     return "This channel's id is: #{@slack_id}, the name is: #{@name}. This channel has #{@member_count} members and is about #{@topic}"
+  end
+
+  private
+  def empty_topic
+    if @topic == ""
+      @topic = "N/A"
+    end
   end
 end

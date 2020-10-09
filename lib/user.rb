@@ -12,8 +12,6 @@ class User < Recipient
     empty_status
   end
 
-
-
   def self.list_all
     base_url = "https://slack.com/api/users.list"
 
@@ -28,6 +26,7 @@ class User < Recipient
     return "This user's id is: #{@slack_id}, the username is: #{@name} and their real name is: #{@real_name}. They have a status emoji of: #{@status_emoji} and their status text is: #{@status_text}"
   end
 
+  private
   def empty_status
     if @status_emoji == ""
       @status_emoji = "N/A"
@@ -37,9 +36,4 @@ class User < Recipient
       @status_text = "N/A"
     end
   end
-
-  def test
-
-  end
-
 end
