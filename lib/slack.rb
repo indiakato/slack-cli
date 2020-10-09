@@ -52,14 +52,10 @@ def main
     when "4", "select channel"
       main_select_channel(workspace)
     when "5", "details"
-      if workspace.selected.nil?
-        puts "No user or channel selected"
-      else
-        puts workspace.show_details
-      end
+      workspace.selected.nil? ? (puts "No user or channel selected"): (puts workspace.show_details)
     when "6", "send message"
-      if workspace.selected.nil? || workspace.selected.instance_of?(User)
-        puts "Invalid channel, you must have a channel selected"
+      if workspace.selected.nil?
+        puts "A valid user or channel has not been selected."
       else
         puts "Please enter message to post:"
         message = gets.chomp
@@ -73,7 +69,7 @@ def main
     choice = gets.chomp.downcase
   end
 
-  puts "Thank you for using the Ada Slack CLI"
+  puts "Thank you for using India & Richelle's Ada Slack CLI"
 end
 
 main if __FILE__ == $PROGRAM_NAME

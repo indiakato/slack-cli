@@ -14,7 +14,7 @@ class Recipient
     response = HTTParty.post(url, body: {
         token: ENV["SLACK_TOKEN"],
         text: message,
-        channel: @name
+        channel: @slack_id
     }
     )
     unless response.code == 200 && response.parsed_response["ok"]
